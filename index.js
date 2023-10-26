@@ -8,7 +8,7 @@ admin.initializeApp({
 
 console.log(deviceToken.device)
 
-const topic = 'Send by Topic'
+const topic = 'SendByTopic'
 const payload = {
     notification: {
         title: 'My Notification #1',
@@ -22,7 +22,7 @@ const payload = {
  * mode to send
  * device, topics, all, some
  */
-const sendBy = 'all';
+const sendBy = 'topics';
 
 /**
  * send with devices
@@ -41,13 +41,30 @@ if (sendBy == 'device' ) {
  * send with topics
  */
 if (sendBy == 'topics') {
-    admin.messaging().sendToTopic(topic, payload)
-        .then((response) => {
-            console.log('Sent is successfully\n ', response)
-        })
-        .catch((error) => {
-            console.log('Sent is failed\n ', error)
-        })
+    // admin.messaging().sendToTopic(topic, payload)
+    //     .then((response) => {
+    //         console.log('Sent is successfully\n ', response)
+    //     })
+    //     .catch((error) => {
+    //         console.log('Sent is failed\n ', error)
+    //     })
+    admin.messaging().send({
+        notification: {
+            title: 'topic',
+            body: 'send data with topic'
+        },
+        data: {
+            score: '855',
+            time: '2:34'
+        },
+        topic: 'client_ios'  
+    })
+    .then((response) => {
+        console.log('Sent is successfully\n ', response)
+    })
+    .catch((error) => {
+        console.log('Sent is failed\n ', error)
+    })
 }
 
 /**
