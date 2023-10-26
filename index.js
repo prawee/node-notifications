@@ -19,9 +19,9 @@ const payload = {
 
 /**
  * mode to send
- * device, topics
+ * device, topics, all, some
  */
-const sendBy = 'topics';
+const sendBy = 'some';
 
 /**
  * send with devices
@@ -36,6 +36,9 @@ if (sendBy == 'device' ) {
         })
 }
 
+/**
+ * send with topics
+ */
 if (sendBy == 'topics') {
     admin.messaging().sendToTopic(topic, payload)
         .then((response) => {
@@ -44,4 +47,23 @@ if (sendBy == 'topics') {
         .catch((error) => {
             console.log('Sent is failed\n ', error)
         })
+}
+
+/**
+ * send specific devices
+ */
+if (sendBy == 'some') {
+    admin.messaging().send({
+        data: {
+            score: '850',
+            time: '2:45'
+        },
+        token: deviceToken.device[0]
+    })
+    .then((response) => {
+        console.log('Sent is successfully\n ', response)
+    })
+    .catch((error) => {
+        console.log('Sent is failed\n ', error)
+    })
 }
