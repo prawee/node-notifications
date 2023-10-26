@@ -7,6 +7,7 @@ admin.initializeApp({
 })
 
 // console.log(deviceToken.device)
+const topic = 'Send by Topic'
 const payload = {
     notification: {
         title: 'My Notification #1',
@@ -16,10 +17,31 @@ const payload = {
     }
 }
 
-admin.messaging().sendToDevice(deviceToken.device, payload)
-    .then((response) => {
-        console.log('Sent is successfully.\n', response)
-    })
-    .catch((error) => {
-        console.log('Sent is failed.\n ', error)
-    })
+/**
+ * mode to send
+ * device, topics
+ */
+const sendBy = 'topics';
+
+/**
+ * send with devices
+ */
+if (sendBy == 'device' ) {
+    admin.messaging().sendToDevice(deviceToken.device, payload)
+        .then((response) => {
+            console.log('Sent is successfully.\n', response)
+        })
+        .catch((error) => {
+            console.log('Sent is failed.\n ', error)
+        })
+}
+
+if (sendBy == 'topics') {
+    admin.messaging().sendToTopic(topic, payload)
+        .then((response) => {
+            console.log('Sent is successfully\n ', response)
+        })
+        .catch((error) => {
+            console.log('Sent is failed\n ', error)
+        })
+}
