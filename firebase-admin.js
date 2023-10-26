@@ -22,7 +22,7 @@ const payload = {
  * mode to send
  * device, topics, all, some
  */
-const sendBy = 'all';
+const sendBy = 'some';
 
 /**
  * send with devices
@@ -72,6 +72,10 @@ if (sendBy == 'topics') {
  */
 if (sendBy == 'some') {
     admin.messaging().send({
+        notification: {
+            title: 'send with some',
+            body: 'send data with by some'
+        },
         data: {
             score: '850',
             time: '2:45'
