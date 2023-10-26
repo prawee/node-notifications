@@ -8,7 +8,7 @@ admin.initializeApp({
 
 // console.log(deviceToken.device)
 
-const topic = 'SendByTopic'
+const topicName = 'industry-tech'
 const payload = {
     notification: {
         title: 'My Notification #1',
@@ -22,7 +22,7 @@ const payload = {
  * mode to send
  * device, topics, all, some
  */
-const sendBy = 'some';
+const sendBy = 'all';
 
 /**
  * send with devices
@@ -103,7 +103,8 @@ if (sendBy == 'all') {
             title: 'send by multicast',
             body: 'send by multicast data'
         },
-        tokens: deviceToken.device
+        tokens: deviceToken.device,
+        topic: topicName
     })
     .then((response) => {
         console.log('Sent is successfully\n ', response.responses)
