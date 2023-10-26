@@ -10,7 +10,9 @@ admin.initializeApp({
 const payload = {
     notification: {
         title: 'My Notification #1',
-        body: 'Hi, this is notification #1' 
+        body: 'Hi, this is notification #1',
+        sound: 'default',
+        badge: '5'
     }
 }
 
