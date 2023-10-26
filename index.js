@@ -6,7 +6,8 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
 
-// console.log(deviceToken.device)
+console.log(deviceToken.device)
+
 const topic = 'Send by Topic'
 const payload = {
     notification: {
@@ -21,7 +22,7 @@ const payload = {
  * mode to send
  * device, topics, all, some
  */
-const sendBy = 'some';
+const sendBy = 'all';
 
 /**
  * send with devices
@@ -59,6 +60,25 @@ if (sendBy == 'some') {
             time: '2:45'
         },
         token: deviceToken.device[0]
+    })
+    .then((response) => {
+        console.log('Sent is successfully\n ', response)
+    })
+    .catch((error) => {
+        console.log('Sent is failed\n ', error)
+    })
+}
+
+/**
+ * send to multiple devices
+ */
+if (sendBy == 'all') {
+    admin.messaging().sendMulticast({
+        data: {
+            score: '850',
+            time: '2:45'
+        },
+        tokens: deviceToken.device
     })
     .then((response) => {
         console.log('Sent is successfully\n ', response)
