@@ -6,7 +6,7 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
 
-console.log(deviceToken.device)
+// console.log(deviceToken.device)
 
 const topic = 'SendByTopic'
 const payload = {
@@ -22,7 +22,7 @@ const payload = {
  * mode to send
  * device, topics, all, some
  */
-const sendBy = 'topics';
+const sendBy = 'all';
 
 /**
  * send with devices
@@ -95,10 +95,14 @@ if (sendBy == 'all') {
             score: '850',
             time: '2:45'
         },
+        notification: {
+            title: 'send by multicast',
+            body: 'send by multicast data'
+        },
         tokens: deviceToken.device
     })
     .then((response) => {
-        console.log('Sent is successfully\n ', response)
+        console.log('Sent is successfully\n ', response.responses)
     })
     .catch((error) => {
         console.log('Sent is failed\n ', error)
