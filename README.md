@@ -26,3 +26,7 @@ Make notification admin with node and firebase
     "device": []
 }
 ```
+
+## Reference
+
+<https://www.npmjs.com/package/node-firebase-push-notification>
