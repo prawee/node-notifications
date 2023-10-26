@@ -14,7 +14,7 @@ const payload = {
         title: 'My Notification #1',
         body: 'Hi, this is notification #1',
         sound: 'default',
-        badge: '5'
+        badge: '0'
     }
 }
 
@@ -22,7 +22,7 @@ const payload = {
  * mode to send
  * device, topics, all, some
  */
-const sendBy = 'all';
+const sendBy = 'device';
 
 /**
  * send with devices
@@ -30,7 +30,7 @@ const sendBy = 'all';
 if (sendBy == 'device' ) {
     admin.messaging().sendToDevice(deviceToken.device, payload)
         .then((response) => {
-            console.log('Sent is successfully.\n', response)
+            console.log('Sent is successfully.\n', response?.results)
         })
         .catch((error) => {
             console.log('Sent is failed.\n ', error)
